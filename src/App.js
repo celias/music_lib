@@ -2,8 +2,29 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import axios from 'axios';
+
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      topArtists: [],
+
+    }
+    // BIND or ARROW FUNC
+
+  }
+
+  // LIFECYCLE HOOK
+  componentDidMount() {
+    axios.get('/api/getApiData')
+    .then(response => {
+      return this.setState({topArtists: response.data})
+    })
+  }
   render() {
+    console.log("Api Data/STATE: ", this.state)
     return (
       <div className="App">
         <header className="App-header">
