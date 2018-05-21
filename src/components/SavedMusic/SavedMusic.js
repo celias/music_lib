@@ -23,8 +23,8 @@ class SavedMusic extends Component {
     }
 
     addToMyFavorites = (item) => {
-        axios.post('/api/postFavoriteArtists')
-        console.log("WHOLE FAVORITE")
+        axios.post('/api/postSavedMusic')
+        
     }
 
     render(){

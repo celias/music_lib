@@ -12,20 +12,19 @@ const getTopArtists = (req, res, next) => {
 };
 
 const getSavedMusic = (req, res, next) => {
-    console.log("BODY", req.body, req.params)
     let newSavedMusic = {
-        savedMusic
+        savedArt
     }
-    res.send(newSavedMusic);
+    res.status(200).json(newSavedMusic)
 }
 
-const postFavoriteArtists = (req, res, next) => {
-    savedMusic.push(req.body, req.params);
-    res.send(savedMusic);
+const postSavedMusic = (req, res, next) => {
+    savedMusic.push(req.body)
+    res.status(200).json(SavedMusic);
 };
 
 module.exports = {
     getTopArtists,
     getSavedMusic,
-    postFavoriteArtists
+    postSavedMusic
 };
