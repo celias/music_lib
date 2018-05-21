@@ -5,6 +5,8 @@ import './App.css';
 import axios from 'axios';
 
 import ArtistCard from './components/ArtistCard/ArtistCard';
+
+import SavedMusicCard from './components/SavedMusic/SavedMusicCard';
 import SavedMusic from './components/SavedMusic/SavedMusic';
 
 class App extends Component {
@@ -18,6 +20,7 @@ class App extends Component {
     // BIND or ARROW FUNC
     this.artistInfo = this.artistInfo.bind(this);
     this.randomTopArtist = this.randomTopArtist.bind(this);
+    // this.savedArtist = this.savedArtist.bind(this);
     
    
   }
@@ -37,6 +40,12 @@ class App extends Component {
   randomTopArtist(value) {
     this.setState({ randomTopArtist: this.state.topArtists[Math.floor((Math.random() * 50))] }) 
   }
+
+
+
+
+
+
 
 
 
@@ -67,6 +76,8 @@ class App extends Component {
 
             <button className="randomArtistBtn" onClick={() => this.randomTopArtist()}>Random Artist</button>
 
+            
+            
             <SavedMusic />
             
      

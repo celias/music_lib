@@ -1,40 +1,58 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ArtistCard from '../ArtistCard/ArtistCard';
+import SavedMusicCard from './SavedMusicCard';
 
 class SavedMusic extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            savedMusic: [],
-            savedMusicList: []
+          savedMusic: [],
+          mySavedMusic: []
         }
-        // this.addToMyFavorites = this.addToMyFavorites.bind(this);
+
+    //    this.mySavedMusic = this.mySavedMusic.bind(this);
+       this.saveClick = this.saveClick.bind(this);
     }
 
     componentDidMount(){
-      axios.get('/api/getSavedMusic').then(response => {
-          console.log("THIS IS SAVED: ", response)
-          this.setState({
-              savedMusic: response.data.savedMusic
-          })
-      })
+      axios.get('/api/getSavedMusic/').then(response => {
+          this.setState({ savedMusic: response.data })
+        })
     }
-
-    addToMyFavorites = (item) => {
-        axios.post('/api/postSavedMusic')
+    
+    // mySavedMusic(value){
+        //     this.setState({ mySavedMusic: this.state.savedMusic })
+        // }
         
+        saveClick(id){
+            axios.post(`/api/addToFav/${id}`)
+        }
+        
+        
+        
+        
+        
+        
+        render(){
+            console.log("THIS IS SAVED: ", this.state.savedMusic)
+        
+            return (
+                <div>
+                    {this.state.savedMusic &&
+                        this.state.savedMusic.map((curr, i) => {
+                            return (
+                                <div key={i} value={curr}>
+                                <button onClick={()=> this.saveClick(this.state.savedMusic[0].id)}>Click</button>
+                                </div>
+                            )
+                        })
+                    }
+                    </div>
+           
+            )
+        
+        }
     }
 
-    render(){
-  console.log(this.state, "State motherfucker")
-        return(
-            <div>
-                <button onClick={() => this.addToMyFavorites()}>FAVORITE</button>
-                <h1>SAVED MUSIC</h1>
-                </div>
-        )
-    }
-}
 export default SavedMusic;
