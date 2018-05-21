@@ -4,7 +4,7 @@ const cors = require('cors');
 const port = 3002;
 
 // REQUIRE METHODS FROM CONTROLLER (ENDPOINTS)
-const { getTopArtists } = require('./controllers/mainCtrl');
+const { getTopArtists, postFavoriteArtists, getSavedMusic } = require('./controllers/mainCtrl');
 
 // INITIALIZE EXPRESS
 const app = express();
@@ -16,7 +16,10 @@ app.use(cors());
 app.use(json());
 
 // ENDPOINTS
-app.get('/api/getApiData', getTopArtists)
+app.get('/api/getApiData', getTopArtists); // Reads // a getRequest // gets data
+app.get('/api/getSavedMusic', getSavedMusic);
+app.post('/api/postFavoriteArtists', postFavoriteArtists);
+
 
 
 // SERVER SETUP
